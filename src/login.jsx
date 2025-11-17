@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import './App.css'
+import { useNavigate } from 'react-router-dom';
 import loginImg from './assests/login_photu.png';
 import googleLogo from './assests/ggl.png';
 import facebookLogo from './assests/fb.png';
 
 const Login =()=>{
+  const navigate = useNavigate();
     const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +29,7 @@ const Login =()=>{
       if (res.ok) {
         alert("✅ Login successful!");
         localStorage.setItem("token", data.token);
+        navigate("/home");
       } else {
         alert(`⚠️ ${data.message}`);
       }
@@ -61,7 +64,7 @@ const Login =()=>{
                             
                         </form>
 
-                        <button onClick={handleLogin}>Let's Start!</button><a href='#'>Forgot Password?!</a>
+                        <button onClick={handleLogin} >Let's Start!</button><a href='#'>Forgot Password?!</a>
                         <p>Don't Have An Account <a href='/signin'>Please Sign in</a> </p>
                         <div className="social-login">
                       
